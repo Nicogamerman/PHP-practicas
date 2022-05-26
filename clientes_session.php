@@ -26,11 +26,14 @@ if ($_POST){ //si la persona completo todos los datos viene toda esta info:
     $_SESSION['listadoClientes'][] = $cliente;
     }
 
-    else if(!isset($_POST["btnEliminar"])){
-        session_destroy();
-
-    }
+    else if(isset($_POST["btnEliminar"])){
+        session_unset(); 
+        //session_destroy(); al usarlo hay que clickear dos veces para que elimine los registros en la web (no se exactamente porque es asi.)
+        //print_r ($_SESSION);
+        echo ("llego al metodo");
+    }    
 }
+
 //if(!isset) es la funcion para saber si la variable existe o no existe. Usamos ! para que sea negativo.
 if(!isset ($_SESSION["listadoClientes"])){ //pregunto si NO esta seteada la variable "listadoClientes"
 
