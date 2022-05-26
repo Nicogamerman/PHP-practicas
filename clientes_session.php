@@ -8,7 +8,9 @@ error_reporting(E_ALL);
 session_start(); //indica que utilizaremos variables de session,  Iniciar una nueva sesión o reanudar la existente mediante una petición GET o POST
 //session_destroy(); //lo use para eliminar los datos que me habian quedado guardados de la prueba anterior (queda en el servidor local si no se elimina)
 if ($_POST){ //si la persona completo todos los datos viene toda esta info:
-    
+
+    if(isset($_POST["btnEnviar"])){
+
     $nombre = $_POST['txtNombre'];
     $edad = $_POST['txtEdad'];
     $dni = $_POST['txtDni'];
@@ -22,7 +24,17 @@ if ($_POST){ //si la persona completo todos los datos viene toda esta info:
 
     // la persona hizo click en enviar, entraron los datos por $_POST y hay que almacenarlo en la variable de session, el cual es un array asociativo.
     $_SESSION['listadoClientes'][] = $cliente;
+    }
 
+    else if(!isset($_POST["btnEliminar"])){
+        session_destroy();
+
+    }
+}
+//if(!isset) es la funcion para saber si la variable existe o no existe. Usamos ! para que sea negativo.
+if(!isset ($_SESSION["listadoClientes"])){ //pregunto si NO esta seteada la variable "listadoClientes"
+
+    $_SESSION["listadoClientes"] = array(); //si no esta seteada, la creo.
 }
 
 //print_r ($_SESSION); //esto es para poder ver los datos en el codigo fuente de la pagina
@@ -86,8 +98,7 @@ if ($_POST){ //si la persona completo todos los datos viene toda esta info:
                                 <td> <?php echo $cliente["telefono"] ?></td>
                                 <td> <?php echo $cliente["edad"] ?></td>
                             </tr>
-                        <?php endforeach; ?>                       
-                       
+                        <?php endforeach; ?>
                     </tbody>              
                 </table>
             </div>
