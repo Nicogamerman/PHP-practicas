@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 //cuando haga click en el submit de la web va a hacer que se recargue todo el archivo y a traves de php poder capturar los datos siempre y cuando haya POST BACK
 session_start(); //indica que utilizaremos variables de session,  Iniciar una nueva sesión o reanudar la existente mediante una petición GET o POST
 //session_destroy(); //lo use para eliminar los datos que me habian quedado guardados de la prueba anterior (queda en el servidor local si no se elimina)
-if ($_POST){ //si la persona completo todos los datos viene toda esta info:
+if ($_POST) //si la persona completo todos los datos viene toda esta info:
 
     if(isset($_POST["btnEnviar"])){
 
@@ -32,7 +32,7 @@ if ($_POST){ //si la persona completo todos los datos viene toda esta info:
         //print_r ($_SESSION);
         echo ("llego al metodo");
     }    
-}
+
 
 //if(!isset) es la funcion para saber si la variable existe o no existe. Usamos ! para que sea negativo.
 if(!isset ($_SESSION["listadoClientes"])){ //pregunto si NO esta seteada la variable "listadoClientes"
