@@ -5,3 +5,4 @@ function calcularAreaRect ($base, $altura){
     echo "El area del rectangulo es: " .calcularAreaRect(100,20);
      
 ?>
+ 
