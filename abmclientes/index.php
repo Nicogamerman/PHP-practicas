@@ -1,3 +1,14 @@
+<?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors',1);
+    error_reporting(E_ALL);
+
+    
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -32,7 +43,7 @@
                     <div>
                         <input type="file" name="archivo1[]" id="archivo1" accept=".jpg, .jpeg, .png, .gif" multiple>                    
                         <button type="submit">Enviar</button>
-                        
+
                     </div>                   
                        
                 </form> 
