@@ -44,7 +44,7 @@ function print_f3($variable) //Una función es un conjunto de instrucciones que 
 {
     if (is_array($variable)) { //is_array comprueba si la variable es un array, y lo guarda en un archivo datos.txt
         $contenido = ""; // $contenido es igual a vacio, lo hacemos para declararla.
-        foreach ($variable as $item) { // para cada $variable como $item
+        foreach ($variable as $item) { // para cada $variable crea un $item
             $contenido .= $item . "\n"; //concatena contenido con item. Con esto evitaremos que file_put_contents nos pise el dato anterior.
         } 
         file_put_contents("datos.txt", $contenido); //file_put_contents sobreescribe todo, hay que hacer que coloque todas las notas sin pisar la anterior.
