@@ -61,9 +61,7 @@
         $strJson = json_encode($aTareas);
     
         //Almacenar el json en el archivo
-        file_put_contents("archivo1.txt", $strJson);
-    
-        header("Location: index.php");
+        file_put_contents("archivo1.txt", $strJson);    
 }
 ?>
 
