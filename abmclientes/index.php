@@ -2,8 +2,7 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors',1);
     error_reporting(E_ALL);
-
-
+    
     if(file_exists("archivo.txt")){ //si el archivo existe lo abrimos.
         //si el archivo existe, cargo los clientes en la variable aClientes
         $strJson = file_get_contents("archivo.txt"); //con file_get_contents busca y lee el archivo.txt
