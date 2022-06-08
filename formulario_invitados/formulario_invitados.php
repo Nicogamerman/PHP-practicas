@@ -2,7 +2,28 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors',1);
     error_reporting(E_ALL);
+     
+    //si existe el archivo invitados lo abrimos y cargamos en una variable del tipo array los DNIs permitidos    
+    //sino el array queda como un array vacio 
+    if(file_exists("invitados.txt")){         
+        $strJson = file_get_contents("invitados.txt");
+        $aInvitados = json_decode($strJson, true); 
+    }
+    else {        
+        $aInvitados = array();
+    }   
+    
+    if(isset($_POST["btnProcesar"])){ //si el dni ingresado se encuentra en la lista, se mostrara un mensaje de bienvenida
+        $btnProcesar = $_GET["btnProcesar"];
+    } else { //sino se mostrara un mensaje que no se encuentra en la lista de invitados
+        $btnProcesar="";
+    }  
 
+    if(isset($_POST["btnVip"])){ //si el codigo es verde entonces mostrara su codigo de acceso es....
+        $btnVip = $_GET["btnVip"];
+    } else { //sino "Usted no tiene pase VIP"
+        $btnVip="";
+    }  
 
 
 ?>
@@ -31,7 +52,7 @@
                     <label for="txtTitulo">Dni</label>
                     <input type="text" name="txtDni" id="txtDni" class="form-control">
                     <div class="py-3">
-                        <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-primary">Verificar invitado</button>
+                        <button type="submit" id="btnEnviar" name="btnProcesar" class="btn btn-primary">Verificar invitado</button>
                     </div>
                 <div>           
             </div>
@@ -40,7 +61,7 @@
                     <label for="txtTitulo">Ingrese el codigo secreto para el pase VIP:</label>
                     <input type="text" name="txtDni" id="txtDni" class="form-control">
                     <div class="py-3">
-                        <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-primary">Verificar codigo</button>
+                        <button type="submit" id="btnEnviar" name="btnVip" class="btn btn-primary">Verificar codigo</button>
                     </div>
                 </div>
             </div>
