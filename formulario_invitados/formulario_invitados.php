@@ -1,32 +1,39 @@
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors',1);
-    error_reporting(E_ALL);
-     
-    //si existe el archivo invitados lo abrimos y cargamos en una variable del tipo array los DNIs permitidos    
-    //sino el array queda como un array vacio 
-    if(file_exists("invitados.txt")){         
-        $strJson = file_get_contents("invitados.txt");
-        $aInvitados = json_decode($strJson, true); 
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+ini_set('error_reporting', E_ALL);
+
+//vemos si son admitidos los invitados:
+if(file_exists("invitados.txt")){
+    $aInvitados = explode(",",file_get_contents("invitados.txt")); //explode me genera un array con cada valor de invitados.
+} else {
+    $aInvitados = array(); //si no hay informacion, se crea un array vacio para que no nos genere un error.
+}
+
+if ($_POST) {
+    if (isset($_REQUEST['btnProcesar'])) {
+        $nombre = trim($_REQUEST['txtNombre']);
+        if (in_array($nombre, $aInvitados)) {
+
+            $aMensaje = array("texto" => "¡Bienvenid@ $nombre a la fiesta!", 
+                              "estado" => "success");
+        } else {
+            $aMensaje = array("texto" => "No se encuentra en la lista de invitados.", 
+                              "estado" => "danger");
+        }
+    } else if (isset($_REQUEST['btnVip'])) {
+        $respuesta = trim($_REQUEST['txtPregunta']);
+        if ($respuesta == "verde") {
+            $aMensaje = array("texto" => "Su código de acceso es " . rand(1000,9999), "estado" => "success");
+
+        } else {
+            $aMensaje = array("texto" => "Usted no tiene pase VIP", "estado" => "danger");
+        }
     }
-    else {        
-        $aInvitados = array();
-    }   
-    
-    if(isset($_POST["btnProcesar"])){ //si el dni ingresado se encuentra en la lista, se mostrara un mensaje de bienvenida
-        $btnProcesar = $_GET["btnProcesar"];
-    } else { //sino se mostrara un mensaje que no se encuentra en la lista de invitados
-        $btnProcesar="";
-    }  
-
-    if(isset($_POST["btnVip"])){ //si el codigo es verde entonces mostrara su codigo de acceso es....
-        $btnVip = $_GET["btnVip"];
-    } else { //sino "Usted no tiene pase VIP"
-        $btnVip="";
-    }  
-
-
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -44,27 +51,36 @@
             <div class="col-12 pt-5 pb-3">
                 <h1>Lista de invitados</h1>
             </div>
+            <?php if(isset($aMensaje)): ?>
+                <div class="col-12">
+                    <div class="alert alert-<?php echo $aMensaje["estado"]; ?>" role="alert">
+                    <?php echo $aMensaje["texto"]; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div>
                 <h4>Complete el siguiente formulario:</h4>
             </div>
             <div class="col-6">
+            <form method="POST" action="">
                 <div>
                     <label for="txtTitulo">Dni</label>
-                    <input type="text" name="txtDni" id="txtDni" class="form-control">
+                    <input type="text" name="txtNombre" id="txtNombre" class="form-control">
                     <div class="py-3">
-                        <button type="submit" id="btnEnviar" name="btnProcesar" class="btn btn-primary">Verificar invitado</button>
+                        <button type="submit"  name="btnProcesar" class="btn btn-primary" value="Verificar invitado">Verificar invitado</button>
                     </div>
                 <div>           
             </div>
             <div>
                 <div>
                     <label for="txtTitulo">Ingrese el codigo secreto para el pase VIP:</label>
-                    <input type="text" name="txtDni" id="txtDni" class="form-control">
+                    <input type="text" name="txtPregunta"  class="form-control">
                     <div class="py-3">
-                        <button type="submit" id="btnEnviar" name="btnVip" class="btn btn-primary">Verificar codigo</button>
+                        <button type="submit" name="btnVip" class="btn btn-primary" value="Verificar código">Verificar codigo</button>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>    
 </body>
