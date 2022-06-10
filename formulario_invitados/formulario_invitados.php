@@ -13,9 +13,8 @@ if(file_exists("invitados.txt")){
 
 if ($_POST) {
     if (isset($_REQUEST['btnProcesar'])) {
-        $nombre = trim($_REQUEST['txtNombre']);
-        if (in_array($nombre, $aInvitados)) {
-
+        $nombre = trim($_REQUEST['txtNombre']); // trim — Elimina espacio en blanco (u otro tipo de caracteres) del inicio y el final de la cadena
+        if (in_array($nombre, $aInvitados)) { //in_array — Comprueba si un valor existe en un array
             $aMensaje = array("texto" => "¡Bienvenid@ $nombre a la fiesta!", 
                               "estado" => "success");
         } else {
@@ -25,8 +24,7 @@ if ($_POST) {
     } else if (isset($_REQUEST['btnVip'])) {
         $respuesta = trim($_REQUEST['txtPregunta']);
         if ($respuesta == "verde") {
-            $aMensaje = array("texto" => "Su código de acceso es " . rand(1000,9999), "estado" => "success");
-
+            $aMensaje = array("texto" => "Su código de acceso es " . rand(1000,9999), "estado" => "success"); //rand — Genera un número entero aleatorio
         } else {
             $aMensaje = array("texto" => "Usted no tiene pase VIP", "estado" => "danger");
         }
