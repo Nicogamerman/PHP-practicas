@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+if($_POST){
+  if(isset($_POST["btnCerrar"])){
+    session_destroy (); //al cerrar sesion hay que destruir las variables de sesion.
+    header ("Location: login.php");
+  }
+  
+}
+
+
 ?>
 
 <!DOCTYPE html>

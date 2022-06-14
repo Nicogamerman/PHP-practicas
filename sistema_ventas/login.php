@@ -3,21 +3,25 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+session_start(); //al usar la variable sesion, lo primero que necesitamos es iniciar session, la linea va lo mas arriba posible.
+
 
 if($_POST){
   $usuario = trim($_REQUEST["txtUsuario"]);
   $clave = trim($_REQUEST["txtClave"]);
-
   //Si el usuario es admin y la clave es admin123
+  if ($usuario == "admin" && $clave == "admin123"){
     //Crear una variable de session con tu nombre
+    $_SESSION ["nombre"] = "nicolas";  //$_SESSION Es un array asociativo que contiene variables de sesión disponibles para el script actual.
     //Redireccionar a index.php
+    header("Location: index.php");
+  }
   //sino
-    //$msg = "Usuario o clave incorrecto";
-
-
+    else{
+      //$msg = "Usuario o clave incorrecto";
+      $msg="Usuario o clave incorrecto";
+    }
 }
-
-
 
 ?>
 <!DOCTYPE html>
