@@ -82,7 +82,6 @@ class Carrito{
     }
 }
 
-
 //Programa
 
 $cliente1 = new Cliente();
