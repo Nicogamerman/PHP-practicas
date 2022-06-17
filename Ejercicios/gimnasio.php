@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 class Persona {
     protected $dni; 
     protected $nombre;
@@ -12,8 +16,6 @@ class Persona {
         $this -> correo =$correo;
         $this -> celular =$celular;       
     }   
-
-
 }
 
 class Alumno extends Persona {
@@ -32,8 +34,7 @@ class Alumno extends Persona {
         $this -> peso =0.0;
         $this -> altura =0.0;
         $this -> aptoFisico =false; 
-        $this -> presentismo =0.0; 
-               
+        $this -> presentismo =0.0;                
     }   
 
     public function __get($propiedad){ //esta es la forma mas simple de acortar todos los getter y setter, esto nos lo facilita php.
@@ -146,7 +147,5 @@ $clase2->inscribirAlumno($alumno1);
 $clase2->inscribirAlumno($alumno2);
 $clase2->inscribirAlumno($alumno3);
 $clase2->imprimirListado();
-
-
 
 ?>
