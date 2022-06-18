@@ -35,7 +35,7 @@ class Tarjeta{
     }
 }
 
-class Persona{ 
+abstract class Persona{ 
     protected $dni;
     protected $nombre;
     protected $correo;
@@ -53,6 +53,9 @@ class Persona{
 
     public function __set($propiedad, $valor){ //forma simple de colocar el setter.
         $this -> $propiedad = $valor;
+    }
+    abstract public function imprimir();{
+
     }
 
 }
