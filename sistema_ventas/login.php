@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 session_start(); //al usar la variable sesion, lo primero que necesitamos es iniciar session, la linea va lo mas arriba posible.
 
-
 if($_POST){
   $usuario = trim($_REQUEST["txtUsuario"]);
   $clave = trim($_REQUEST["txtClave"]);
