@@ -12,7 +12,7 @@ if($_POST){
   //Si el usuario es admin y la clave es admin123
   if ($usuario == "admin" && $clave == "admin123"){
     //Crear una variable de session con tu nombre
-    $_SESSION ["nombre"] = "nicolas";  //$_SESSION Es un array asociativo que contiene variables de sesión disponibles para el script actual.
+    $_SESSION ["nombre"] = "Nicolas";  //$_SESSION Es un array asociativo que contiene variables de sesión disponibles para el script actual.
     //Redireccionar a index.php
     header("Location: index.php");
   }
