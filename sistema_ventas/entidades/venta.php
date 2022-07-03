@@ -156,7 +156,7 @@ class Venta{
         }
 
         $aResultado = array();
-        if($resultado){
+        if($resultado){ 
 
             while($fila = $resultado->fetch_assoc()){
                 $entidadAux = new Venta();
