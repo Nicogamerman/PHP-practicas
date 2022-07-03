@@ -1,4 +1,3 @@
-
 <?php
 
 include_once "config.php";
@@ -144,6 +143,8 @@ include_once("header.php");
                             <select class="form-control" name="lstLocalidad" id="lstLocalidad" required>
                                 <option value="" disabled selected>Seleccionar</option>
                                 <option value="1">CABA</option>
+                                <option value="1">Cordoba</option>
+                                <option value="1">Santa Fe</option>
                             </select>
                         </div>
                         <div class="col-12 form-group">

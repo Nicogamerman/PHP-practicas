@@ -1,36 +1,34 @@
-
 <?php
 
 include_once "config.php";
 include_once "entidades/tipoproducto.php";
-
 
 $tipoProducto = new TipoProducto();
 $tipoProducto->cargarFormulario($_REQUEST);
 
 $pg = "Listado de tipo de productos";
 
-if($_POST){
-    if(isset($_POST["btnGuardar"])){
-        if(isset($_GET["id"]) && $_GET["id"] > 0){
-              //Actualizo un  registro existente
-              $tipoProducto->actualizar();
+if ($_POST) {
+    if (isset($_POST["btnGuardar"])) {
+        if (isset($_GET["id"]) && $_GET["id"] > 0) {
+            //Actualizo un tipoProducto existente
+            $tipoProducto->actualizar();
         } else {
             //Es nuevo
             $tipoProducto->insertar();
         }
-    } else if(isset($_POST["btnBorrar"])){
+        $msg["texto"] = "Guardado correctamente";
+        $msg["codigo"] = "alert-success";
+
+    } else if (isset($_POST["btnBorrar"])) {
         $tipoProducto->eliminar();
         header("Location: tipoproducto-listado.php");
     }
-} else if(isset($_REQUEST["id"])){
-    $tipoProducto->obtenerPorId();
 }
 
-if(isset($_GET["id"]) && $_GET["id"] > 0){
+if(isset($GET["id"]) && $_GET["id"] > 0){
     $tipoProducto->obtenerPorId();
 }
-
 
 include_once("header.php"); 
 ?>
@@ -38,7 +36,7 @@ include_once("header.php");
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Tipo de productos</h1>
+          <h1 class="h3 mb-4 text-gray-800">Tipo de productos</h1>          
           <?php if(isset($msg)): ?>
             <div class="row">
                 <div class="col-12">
